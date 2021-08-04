@@ -1,12 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using IntravisionTestTask.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace IntravisionTestTask.Controllers
 {
+    [Route("[controller]")]
     public class TradeController : Controller
     {
-        // GET
+        private readonly IDbRepository _db;
+
+        public TradeController(IDbRepository db)
+        {
+            _db = db;
+        }
+
+        [HttpGet]
+        [Route("Index")]
         public JsonResult Index()
         {
+            return new(_db.Products);
         }
     }
 }

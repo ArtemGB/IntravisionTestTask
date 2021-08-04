@@ -2,6 +2,7 @@ using IntravisionTestTask.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +24,10 @@ namespace IntravisionTestTask
         {
 
             services.AddControllersWithViews();
+            services.AddDbContext<AppDbContext>(opts =>
+            {
+                opts.UseSqlServer(Configuration["ConnectionStrings:AppContext"]);
+            });
             services.AddScoped<IDbRepository, EfDbRepository>();
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
