@@ -1,9 +1,11 @@
+using IntravisionTestTask.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 
 namespace IntravisionTestTask
 {
@@ -21,6 +23,11 @@ namespace IntravisionTestTask
         {
 
             services.AddControllersWithViews();
+            services.AddScoped<IDbRepository, EfDbRepository>();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+                .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -62,6 +69,8 @@ namespace IntravisionTestTask
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+            SeedData.MakeMigrations(app);
+            SeedData.SeedAllData(app);
         }
     }
 }

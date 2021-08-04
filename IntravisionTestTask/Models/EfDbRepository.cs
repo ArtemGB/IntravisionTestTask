@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace IntravisionTestTask.Models
 {
-    public class EFRepository : IDbRepository
+    public class EfDbRepository : IDbRepository
     {
         private AppDbContext _db;
-        public IQueryable<Product> Products { get; }
+        public IQueryable<Product> Products => _db.Products;
 
-        public EFRepository(AppDbContext db)
+        public EfDbRepository(AppDbContext db)
         {
             _db = db;
         }
@@ -19,7 +20,7 @@ namespace IntravisionTestTask.Models
             try
             {
                 _db.Products.Add(product);
-                _db.SaveChanges();
+                _db.SaveChangesAsync();
                 return product;
             }
             catch (Exception e)
@@ -46,7 +47,17 @@ namespace IntravisionTestTask.Models
 
         public void RemoveProduct(int id)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                Product productToDelete = _db.Products.Find(id);
+                _db.Products.Remove(productToDelete);
+                _db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }
