@@ -10,6 +10,7 @@ namespace IntravisionTestTask.Models
     public class AppDbContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Money> Monies { get; set; }
 
         public AppDbContext(DbContextOptions options) : base(options)
         {

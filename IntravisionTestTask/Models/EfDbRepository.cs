@@ -9,6 +9,7 @@ namespace IntravisionTestTask.Models
     {
         private AppDbContext _db;
         public IQueryable<Product> Products => _db.Products;
+        public IQueryable<Money> Monies => _db.Monies;
 
         public EfDbRepository(AppDbContext db)
         {
@@ -52,6 +53,44 @@ namespace IntravisionTestTask.Models
                 Product productToDelete = _db.Products.Find(id);
                 _db.Products.Remove(productToDelete);
                 _db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public void Deposit(CoinType type, int count)
+        {
+            try
+            {
+                Money money = _db.Monies.FirstOrDefault(m => m.Type == type);
+                if (money != null)
+                {
+                    money.Quantity += count;
+                    _db.Entry(money).State = EntityState.Modified;
+                    _db.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public void Withdraw(CoinType type, int count)
+        {
+            try
+            {
+                Money money = _db.Monies.FirstOrDefault(m => m.Type == type);
+                if (money != null)
+                {
+                    money.Quantity += count;
+                    _db.Entry(money).State = EntityState.Modified;
+                    _db.SaveChanges();
+                }
             }
             catch (Exception e)
             {

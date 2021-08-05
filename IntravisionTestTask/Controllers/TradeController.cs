@@ -19,5 +19,11 @@ namespace IntravisionTestTask.Controllers
         {
             return new(_db.Products);
         }
+
+        [Route("Buy")]
+        public JsonResult Buy(int id)
+        {
+
+        }
     }
 }

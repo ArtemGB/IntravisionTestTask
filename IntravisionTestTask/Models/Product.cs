@@ -17,6 +17,7 @@ namespace IntravisionTestTask.Models
         public decimal Price { get; set; }
         [Required]
         public uint Quantity { get; set; }
+        public string ImageSrc { get; set; }
         
     }
 }
