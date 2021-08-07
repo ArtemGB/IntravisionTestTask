@@ -14,8 +14,7 @@ namespace IntravisionTestTask.Models
         public string Name { get; set; }
 
         [Required]
-        [Column(TypeName = "decimal(8, 2)")]
-        public decimal Price { get; set; }
+        public int Price { get; set; }
         [Required]
         public uint Quantity { get; set; }
         public string ImageSrc { get; set; }
