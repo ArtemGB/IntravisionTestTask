@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace IntravisionTestTask.Models
 {
-    public class Product : BaseModel
+    public class Product
     {
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
 

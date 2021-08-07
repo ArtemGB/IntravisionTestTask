@@ -9,5 +9,6 @@ namespace IntravisionTestTask.Models
         [Required]
         public int Quantity { get; set; }
         public int Sum { get; set; }
+        public bool Enable { get; set; }
     }
 }

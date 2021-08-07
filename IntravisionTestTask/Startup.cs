@@ -24,17 +24,15 @@ namespace IntravisionTestTask
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+                .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             services.AddDbContext<AppDbContext>(opts =>
             {
                 opts.UseSqlServer(Configuration["ConnectionStrings:AppContext"]);
             });
             services.AddScoped<IDbRepository, EfDbRepository>();
-            services.AddControllersWithViews()
-                .AddNewtonsoftJson(options =>
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
-                .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

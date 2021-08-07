@@ -23,14 +23,23 @@ namespace IntravisionTestTask.Models
                 .GetRequiredService<AppDbContext>();
             if (!db.Products.Any())
             {
-                db.Add(new Product() {Name = "Cola", Price = 30, Quantity = 10});
-                db.Add(new Product() {Name = "Pepsi", Price = 40, Quantity = 110});
-                db.Add(new Product() {Name = "Fanta", Price = 30.5M, Quantity = 10});
-                db.Add(new Product() {Name = "Seven Up", Price = 40.7M, Quantity = 15});
-                db.Add(new Product() {Name = "Swepse", Price = 100, Quantity = 50});
-                db.Add(new Product() {Name = "Limon Fresh", Price = 80, Quantity = 30});
-                db.Add(new Product() {Name = "Байкал", Price = 30, Quantity = 20});
-                db.Add(new Product() {Name = "Тархун", Price = 30, Quantity = 10});
+                db.Products.Add(new Product() {Name = "Cola", Price = 30, Quantity = 10});
+                db.Products.Add(new Product() {Name = "Pepsi", Price = 40, Quantity = 110});
+                db.Products.Add(new Product() {Name = "Fanta", Price = 30.5M, Quantity = 10});
+                db.Products.Add(new Product() {Name = "Seven Up", Price = 40.7M, Quantity = 15});
+                db.Products.Add(new Product() {Name = "Swepse", Price = 100, Quantity = 50});
+                db.Products.Add(new Product() {Name = "Limon Fresh", Price = 80, Quantity = 30});
+                db.Products.Add(new Product() {Name = "Байкал", Price = 30, Quantity = 20});
+                db.Products.Add(new Product() {Name = "Тархун", Price = 30, Quantity = 10});
+                db.SaveChanges();
+            }
+
+            if (!db.Monies.Any())
+            {
+                db.Monies.Add(new Money() {Type = CoinType.One, Quantity = 100});
+                db.Monies.Add(new Money() {Type = CoinType.Two, Quantity = 100});
+                db.Monies.Add(new Money() {Type = CoinType.Five, Quantity = 100});
+                db.Monies.Add(new Money() {Type = CoinType.Ten, Quantity = 100});
                 db.SaveChanges();
             }
         }
