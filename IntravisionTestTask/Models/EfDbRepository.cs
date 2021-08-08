@@ -58,8 +58,8 @@ namespace IntravisionTestTask.Models
         {
             try
             {
-               // _db.Entry(product).State = EntityState.Modified;
-               // _db.SaveChanges();
+                _db.Entry(product).State = EntityState.Modified;
+                _db.SaveChanges();
                 return product;
             }
             catch (Exception e)
@@ -84,20 +84,23 @@ namespace IntravisionTestTask.Models
             }
         }
 
-        public void Deposit(CoinType type, int sessionId)
+        public void Deposit(CoinType type, string token)
         {
             try
             {
                 Money money = _db.Monies.FirstOrDefault(m => m.Type == type);
-                Session session = _db.Sessions.Find(sessionId);
-                if (money != null && session != null)
-                {
-                    money.Quantity++;
-                    session.DepositedMoney += (int)type;
-                    _db.Entry(session).State = EntityState.Modified;
-                    _db.Entry(money).State = EntityState.Modified;
-                    _db.SaveChanges();
-                }
+                Session session = _db.Sessions.FirstOrDefault(s => s.Token == token);
+
+                if (money == null)
+                    throw new ArgumentException("Incorrect money type");
+                if (session == null)
+                    throw new ArgumentException("No session with this token");
+
+                money.Quantity++;
+                session.DepositedMoney += (int)type;
+                _db.Entry(session).State = EntityState.Modified;
+                _db.Entry(money).State = EntityState.Modified;
+                _db.SaveChanges();
             }
             catch (Exception e)
             {

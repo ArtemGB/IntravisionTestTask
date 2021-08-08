@@ -38,11 +38,11 @@ namespace IntravisionTestTask.Controllers
 
         [HttpPost]
         [Route("Deposit")]
-        public JsonResult Deposit(CoinType type, int sessionId)
+        public JsonResult Deposit([FromQuery]CoinType type, [FromQuery] string token)
         {
             try
             {
-                _db.Deposit(type, sessionId);
+                _db.Deposit(type, token);
                 return new(new { Status = "Success" });
             }
             catch (Exception e)

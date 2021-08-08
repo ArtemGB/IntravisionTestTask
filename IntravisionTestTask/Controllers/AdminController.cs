@@ -1,4 +1,5 @@
-﻿using IntravisionTestTask.Models;
+﻿using System.Linq;
+using IntravisionTestTask.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IntravisionTestTask.Controllers
@@ -36,14 +37,16 @@ namespace IntravisionTestTask.Controllers
 
         [HttpPost]
         [Route("CreateProduct")]
-        public JsonResult CreateProduct(Product product)
+        public JsonResult CreateProduct([FromBody] Product product, [FromQuery]string token)
         {
-            return new(_db.AddProduct(product));
+            if (_db.Sessions.FirstOrDefault(s => s.Token == token) != null)
+                return new(_db.AddProduct(product));
+            return new(new {Status = "Error", Message = "Incorrect token", Token = token});
         }
-        
+
         [HttpPost]
         [Route("EditProduct")]
-        public JsonResult EditProduct(Product product)
+        public JsonResult EditProduct([FromBody] Product product)
         {
             return new(_db.EditProduct(product));
         }

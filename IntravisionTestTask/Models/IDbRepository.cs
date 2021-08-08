@@ -13,7 +13,7 @@ namespace IntravisionTestTask.Models
         Product AddProduct(Product product);
         Product EditProduct(Product product);
         void RemoveProduct(int id);
-        void Deposit(CoinType type, int count);
+        void Deposit(CoinType type, string count);
         void Withdraw(CoinType type, int count);
     }
 }
