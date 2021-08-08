@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace IntravisionTestTask.Models
@@ -57,8 +58,8 @@ namespace IntravisionTestTask.Models
         {
             try
             {
-                _db.Entry(product).State = EntityState.Modified;
-                _db.SaveChanges();
+               // _db.Entry(product).State = EntityState.Modified;
+               // _db.SaveChanges();
                 return product;
             }
             catch (Exception e)
