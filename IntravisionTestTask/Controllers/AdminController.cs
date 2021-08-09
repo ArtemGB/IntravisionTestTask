@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using IntravisionTestTask.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -49,6 +50,26 @@ namespace IntravisionTestTask.Controllers
         public JsonResult EditProduct([FromBody] Product product)
         {
             return new(_db.EditProduct(product));
+        }
+
+        [HttpDelete]
+        [Route("DeleteProduct")]
+        public JsonResult DeleteProduct(int id, string token)
+        {
+            if (_db.Sessions.FirstOrDefault(s => s.Token == token) != null)
+            {
+                try
+                {
+                    _db.RemoveProduct(id);
+                    return new(new {Status = "Error"});
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return new(new { Status = "Error", Message = "No Product"});
+                }
+            }
+            return new(new { Status = "Error", Message = "Incorrect token", Token = token });
         }
     }
 }

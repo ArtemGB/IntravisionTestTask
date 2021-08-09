@@ -95,6 +95,8 @@ namespace IntravisionTestTask
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+            SeedData.MakeMigrations(app);
+            SeedData.SeedAllData(app);
         }
     }
 }
