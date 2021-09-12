@@ -7,7 +7,7 @@ namespace IntravisionTestTask.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<decimal>(
-                name: "Price",
+                name: "ProductPrice",
                 table: "Products",
                 type: "decimal(8,2)",
                 nullable: false,
@@ -18,7 +18,7 @@ namespace IntravisionTestTask.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<decimal>(
-                name: "Price",
+                name: "ProductPrice",
                 table: "Products",
                 type: "decimal(18,2)",
                 nullable: false,

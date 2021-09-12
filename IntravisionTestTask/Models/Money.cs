@@ -5,10 +5,9 @@ namespace IntravisionTestTask.Models
     public class Money : BaseModel
     {
         [Required]
-        public CoinType Type { get; set; }
+        public CoinType CoinPar { get; set; }
         [Required]
-        public int Quantity { get; set; }
-        public int Sum { get; set; }
-        public bool Enable { get; set; }
+        public int CoinCount { get; set; }
+        public int CoinMaxCount { get; set; }
     }
 }

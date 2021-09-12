@@ -88,7 +88,7 @@ namespace IntravisionTestTask.Models
         {
             try
             {
-                Money money = _db.Monies.FirstOrDefault(m => m.Type == type);
+                Money money = _db.Monies.FirstOrDefault(m => m.CoinPar == type);
                 Session session = _db.Sessions.FirstOrDefault(s => s.Token == token);
 
                 if (money == null)
@@ -96,7 +96,7 @@ namespace IntravisionTestTask.Models
                 if (session == null)
                     throw new ArgumentException("No session with this token");
 
-                money.Quantity++;
+                money.CoinCount++;
                 session.DepositedMoney += (int)type;
                 _db.Entry(session).State = EntityState.Modified;
                 _db.Entry(money).State = EntityState.Modified;
@@ -113,10 +113,10 @@ namespace IntravisionTestTask.Models
         {
             try
             {
-                Money money = _db.Monies.FirstOrDefault(m => m.Type == type);
+                Money money = _db.Monies.FirstOrDefault(m => m.CoinPar == type);
                 if (money != null)
                 {
-                    money.Quantity += count;
+                    money.CoinCount += count;
                     _db.Entry(money).State = EntityState.Modified;
                     _db.SaveChanges();
                 }

@@ -7,7 +7,7 @@ namespace IntravisionTestTask.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "ImageSrc",
+                name: "ProductImg",
                 table: "Products",
                 type: "nvarchar(max)",
                 nullable: true);
@@ -52,7 +52,7 @@ namespace IntravisionTestTask.Migrations
                 name: "Sessions");
 
             migrationBuilder.DropColumn(
-                name: "ImageSrc",
+                name: "ProductImg",
                 table: "Products");
         }
     }

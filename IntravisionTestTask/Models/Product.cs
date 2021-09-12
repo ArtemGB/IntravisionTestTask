@@ -10,13 +10,13 @@ namespace IntravisionTestTask.Models
     public class Product : BaseModel
     {
         [Required]
-        public string Name { get; set; }
+        public string ProductName { get; set; }
 
         [Required]
-        public int Price { get; set; }
+        public int ProductPrice { get; set; }
         [Required]
-        public uint Quantity { get; set; }
-        public string ImageSrc { get; set; }
+        public uint ProductCount { get; set; }
+        public string ProductImg { get; set; }
         
     }
 }

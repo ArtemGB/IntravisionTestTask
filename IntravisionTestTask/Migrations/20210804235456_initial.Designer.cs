@@ -27,14 +27,14 @@ namespace IntravisionTestTask.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal>("ProductPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<long>("Quantity")
+                    b.Property<long>("ProductCount")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");

@@ -57,18 +57,18 @@ namespace IntravisionTestTask.Controllers
         public JsonResult Buy(int id, string token)
         {
             Product product = _db.Products.FirstOrDefault(p => p.Id == id);
-            if (product == null || product.Quantity <= 0)
+            if (product == null || product.ProductCount <= 0)
                 return new(new { Status = "Error", Message = "Товар закончился." });
 
             Session session = _db.Sessions.FirstOrDefault(s => s.Token == token);
-            if (session == null || session.DepositedMoney < product.Price)
+            if (session == null || session.DepositedMoney < product.ProductPrice)
                 return new(new { Status = "Error", Message = "Недостаточно денег." });
 
-            product.Quantity--;
+            product.ProductCount--;
             _db.EditProduct(product);
 
             _db.CloseSession(token);
-            return new(new { Status = "Success", Odd = session.DepositedMoney - product.Price });
+            return new(new { Status = "Success", Odd = session.DepositedMoney - product.ProductPrice });
         }
     }
 }

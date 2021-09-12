@@ -30,13 +30,13 @@ namespace IntravisionTestTask.Migrations
                     b.Property<bool>("Enable")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int>("ProductCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("Sum")
+                    b.Property<int>("CoinMaxCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("Type")
+                    b.Property<int>("CoinPar")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -51,17 +51,17 @@ namespace IntravisionTestTask.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ImageSrc")
+                    b.Property<string>("ProductImg")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal>("ProductPrice")
                         .HasColumnType("decimal(8,2)");
 
-                    b.Property<long>("Quantity")
+                    b.Property<long>("ProductCount")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");

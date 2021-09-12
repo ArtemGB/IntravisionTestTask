@@ -23,23 +23,23 @@ namespace IntravisionTestTask.Models
                 .GetRequiredService<AppDbContext>();
             if (!db.Products.Any())
             {
-                db.Products.Add(new Product() {Name = "Cola", Price = 30, Quantity = 10});
-                db.Products.Add(new Product() {Name = "Pepsi", Price = 40, Quantity = 110});
-                db.Products.Add(new Product() {Name = "Fanta", Price = 30, Quantity = 10});
-                db.Products.Add(new Product() {Name = "Seven Up", Price = 40, Quantity = 15});
-                db.Products.Add(new Product() {Name = "Swepse", Price = 100, Quantity = 50});
-                db.Products.Add(new Product() {Name = "Limon Fresh", Price = 80, Quantity = 30});
-                db.Products.Add(new Product() {Name = "Байкал", Price = 30, Quantity = 20});
-                db.Products.Add(new Product() {Name = "Тархун", Price = 30, Quantity = 10});
+                db.Products.Add(new Product() {ProductName = "Cola", ProductPrice = 30, ProductCount = 10});
+                db.Products.Add(new Product() {ProductName = "Pepsi", ProductPrice = 40, ProductCount = 110});
+                db.Products.Add(new Product() {ProductName = "Fanta", ProductPrice = 30, ProductCount = 10});
+                db.Products.Add(new Product() {ProductName = "Seven Up", ProductPrice = 40, ProductCount = 15});
+                db.Products.Add(new Product() {ProductName = "Swepse", ProductPrice = 100, ProductCount = 50});
+                db.Products.Add(new Product() {ProductName = "Limon Fresh", ProductPrice = 80, ProductCount = 30});
+                db.Products.Add(new Product() {ProductName = "Байкал", ProductPrice = 30, ProductCount = 20});
+                db.Products.Add(new Product() {ProductName = "Тархун", ProductPrice = 30, ProductCount = 10});
                 db.SaveChanges();
             }
 
             if (!db.Monies.Any())
             {
-                db.Monies.Add(new Money() {Type = CoinType.One, Quantity = 100});
-                db.Monies.Add(new Money() {Type = CoinType.Two, Quantity = 100});
-                db.Monies.Add(new Money() {Type = CoinType.Five, Quantity = 100});
-                db.Monies.Add(new Money() {Type = CoinType.Ten, Quantity = 100});
+                db.Monies.Add(new Money() {CoinPar = CoinType.One, CoinCount = 100});
+                db.Monies.Add(new Money() {CoinPar = CoinType.Two, CoinCount = 100});
+                db.Monies.Add(new Money() {CoinPar = CoinType.Five, CoinCount = 100});
+                db.Monies.Add(new Money() {CoinPar = CoinType.Ten, CoinCount = 100});
                 db.SaveChanges();
             }
         }
